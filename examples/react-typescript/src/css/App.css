@@ -1,0 +1,33 @@
+/*
+ * File: /src/css/App.css
+ * Project: @example/react-ts
+ * Created: Sunday, 13th November 2022
+ * Author: Denpex
+ * -----
+ * Copyright 2022, ©Denpex
+ * -----
+ */
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+.color-select {
+  width: 7.5rem;
+  height: 1.75rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}

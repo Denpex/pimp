@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "stripInternal": true,
+    "noEmit": true,
+    "declarationDir": "dist/dts/"
+  },
+  "include": ["src"]
+}

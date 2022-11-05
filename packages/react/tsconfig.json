@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "stripInternal": true,
+    "noEmit": true,
+    "declarationDir": "dist/dts/"
+  },
+  "include": ["src"]
+}

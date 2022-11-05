@@ -1,0 +1,36 @@
+{
+  "name": "@themeit/react",
+  "version": "1.0.0",
+  "description": "A lightweight browser native way to change color themes with react.",
+  "license": "MIT",
+  "entry": "src/index.tsx",
+  "main": "dist/lib/index.js",
+  "module": "dist/lib/index.esm.js",
+  "types": "dist/lib/index.d.ts",
+  "keywords": [
+    "css",
+    "browser",
+    "native",
+    "themes",
+    "theming",
+    "react",
+    "javascript",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@themeit/native": "workspace:^",
+    "@types/react": "^17.0.1",
+    "react": "^17.0.1"
+  },
+  "peerDependencies": {
+    "@themeit/native": ">=1.0.0",
+    "react": ">=17.X"
+  },
+  "files": [
+    "dist/lib/*"
+  ],
+  "scripts": {
+    "build": "rollup -c ../../rollup.config.mjs",
+    "watch": "rollup -c ../../rollup.config.mjs -w"
+  }
+}
