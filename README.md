@@ -11,15 +11,23 @@ A lightweight browser native way to change color themes.
 
 **`@themeit/native`**
 
-| Version | Size (gzip) | Dependencies |
-| ------- | ----------- | ------------ |
-| `1.0.0` | `1.7 kB`    | `None`       |
+| Detail             | Value                                      |
+| ------------------ | ------------------------------------------ |
+| Version            | `1.0.0`                                    |
+| Size               | `4.0 kB`                                   |
+| Size (gzip)        | `1.7 kB`                                   |
+| SHASUM             | `6bac78a300b1166db102c68f125b225a80136289` |
+| Dependency (count) | `0`                                        |
 
 **`@themeit/react`**
 
-| Version | Size (gzip) | Dependencies     |
-| ------- | ----------- | ---------------- |
-| `1.0.0` | `1.4 kB`    | `react`: `>17.X` |
+| Detail             | Value                                      |
+| ------------------ | ------------------------------------------ |
+| Version            | `1.0.0`                                    |
+| Size               | `3.3 kB`                                   |
+| Size (gzip)        | `1.5 kB`                                   |
+| SHASUM             | `2853d85b0b5b360ba0dd932445321db62c68b320` |
+| Dependency (count) | `2`                                        |
 
 ## Install
 
