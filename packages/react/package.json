@@ -1,12 +1,21 @@
 {
   "name": "@themeit/react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight browser native way to change color themes with react.",
   "license": "MIT",
   "entry": "src/index.tsx",
   "main": "dist/lib/index.js",
   "module": "dist/lib/index.esm.js",
   "types": "dist/lib/index.d.ts",
+  "author": {
+    "name": "Mehdi Rashadatjou",
+    "email": "rashadatjou.mehdi@gmail.com",
+    "url": "https://mehdi-rashadatjou.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Denpex/themeit.git"
+  },
   "keywords": [
     "css",
     "browser",
