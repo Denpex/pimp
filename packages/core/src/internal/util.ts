@@ -8,7 +8,11 @@
  * -----
  */
 
-import type { DefaultTheme, ThemeLinkRecord } from "../types/theme";
+import type {
+  DefaultTheme,
+  ThemeLinkRecord,
+  ThemeListener,
+} from "../types/theme";
 
 const LINK_REL_STYLESHEET = "link[rel=stylesheet]";
 const PREFERS_COLOR_SCHEME = "prefers-color-scheme";
@@ -17,15 +21,15 @@ const THEME_NAME_REGEX = /prefers-color-scheme: ([^;()\s]+)/;
 
 /// Get browsers preferred theme
 export function getPreferredColorScheme(): DefaultTheme {
-  if (window?.matchMedia("(prefers-color-scheme: dark)").matches) {
+  if (window?.matchMedia(`(${PREFERS_COLOR_SCHEME}: dark)`).matches) {
     return "dark";
   }
 
-  if (window?.matchMedia("(prefers-color-scheme: light)").matches) {
+  if (window?.matchMedia(`(${PREFERS_COLOR_SCHEME}: light)`).matches) {
     return "light";
   }
 
-  return "no-preference";
+  return "auto";
 }
 
 /**
@@ -54,4 +58,26 @@ export function getStylesheetLinks(): ThemeLinkRecord {
   });
 
   return stylesheetDict;
+}
+
+/**
+ * Adds the change event listener for the prefers-color-scheme matchMedia.
+ * @param ThemeListener Lister that gets called when the system changes themes.
+ */
+export function addColorSchemeChangeListener(themeListener: ThemeListener) {
+  console.log("addEventListener", themeListener);
+  window
+    ?.matchMedia(`(${PREFERS_COLOR_SCHEME}: dark)`)
+    .addEventListener("change", themeListener);
+}
+
+/**
+ * Remove the change event listener for the prefers-color-scheme matchMedia.
+ * @param themeListener Lister that gets called when the system changes themes.
+ */
+export function removeColorSchemeChangeListener(themeListener: ThemeListener) {
+  console.log("removeEventListener", themeListener);
+  window
+    ?.matchMedia(`(${PREFERS_COLOR_SCHEME}: dark)`)
+    .removeEventListener("change", themeListener);
 }

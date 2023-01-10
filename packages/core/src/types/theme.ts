@@ -10,8 +10,13 @@
 
 export type Theme = string | undefined;
 
-export type DefaultTheme = "no-preference" | "light" | "dark";
+export type DefaultTheme = "auto" | "light" | "dark";
 
 export type CustomTheme<T extends Theme> = T extends string ? T : DefaultTheme;
 
 export type ThemeLinkRecord = Map<String, HTMLLinkElement>;
+
+export type ThemeListener = (
+  this: MediaQueryList,
+  ev: MediaQueryListEvent
+) => any;

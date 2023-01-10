@@ -17,10 +17,10 @@ import App from "./components/App";
 import { ThemeProvider } from "@themeit/react";
 
 // - Types
-type CustomThemes = "spider-man" | "batman" | "dark" | "light";
+type CustomThemes = "spider-man" | "batman" | "dark" | "light" | "auto";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <ThemeProvider<CustomThemes> defaultTheme="spider-man" autoLoad>
+  <ThemeProvider<CustomThemes> defaultTheme="auto" autoLoad>
     <React.StrictMode>
       <App />
     </React.StrictMode>

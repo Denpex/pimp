@@ -13,16 +13,32 @@ import type {
   ThemeLinkRecord,
   CustomTheme,
   Theme,
+  ThemeListener,
 } from "./types/theme";
 
-import { getPreferredColorScheme, getStylesheetLinks } from "./internal/util";
+import {
+  getPreferredColorScheme,
+  getStylesheetLinks,
+  addColorSchemeChangeListener,
+  removeColorSchemeChangeListener,
+} from "./internal/util";
 
 // - Constants
-const DEFAULT_THEME = "no-preference";
+const DEFAULT_THEME = "auto";
 
 // - Props
 let stylesheetLinkList: ThemeLinkRecord;
 let activeTheme: Theme;
+
+// - Internal
+
+/**
+ * Color scheme change listener.
+ */
+const colorSchemeChangeListener: ThemeListener = ({ matches: isDark }) => {
+  console.log("colorSchemeChangeListener", "isDark:", isDark);
+  useTheme(isDark ? "dark" : "light");
+};
 
 // - API
 /**
@@ -32,19 +48,25 @@ let activeTheme: Theme;
  *
  * Please make sure that you call this method before using `ThemeIT!`.
  *
- * @param defaultTheme {@link Theme} Set the default theme that will be used. Default `no-preference`
+ * @param defaultTheme {@link Theme} Set the default theme that will be used. Default `auto`
  * @param autoLoad Auto load the `defaultTheme`.
  */
 function init(defaultTheme: Theme = undefined, autoLoad: boolean = false) {
   stylesheetLinkList = getStylesheetLinks();
+  console.log("activeTheme", activeTheme);
 
-  // Load selected theme here and use it
+  // Set the current theme
   if (typeof defaultTheme === "string") {
     activeTheme = defaultTheme;
-    autoLoad && useTheme(defaultTheme);
   } else {
     activeTheme = DEFAULT_THEME;
   }
+
+  // TODO: Handle autoLoad false but activeTheme == auto
+  // TODO: Update docs `no-preference` replace with `auto`
+
+  // Load theme if necessary
+  autoLoad && useTheme(activeTheme);
 }
 
 /**
@@ -60,6 +82,8 @@ function init(defaultTheme: Theme = undefined, autoLoad: boolean = false) {
  */
 function useTheme<T extends Theme>(theme: CustomTheme<T>) {
   const linkKeys = getThemeList();
+
+  // update theme css media queries
   for (const key of linkKeys) {
     const wasChosen = key === theme;
     const item = stylesheetLinkList.get(key);
@@ -67,6 +91,13 @@ function useTheme<T extends Theme>(theme: CustomTheme<T>) {
     item.media = wasChosen ? "all" : "not all";
     item.disabled = !wasChosen;
     activeTheme = theme;
+  }
+
+  // add listener if auto
+  if (theme === "auto") {
+    addColorSchemeChangeListener(colorSchemeChangeListener);
+  } else {
+    removeColorSchemeChangeListener(colorSchemeChangeListener);
   }
 }
 
