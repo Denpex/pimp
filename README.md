@@ -1,10 +1,10 @@
-# ThemeIT!
+# ThemeIT! (Theme Switcher)
 
 ![Monarch butterfly hatched from a cocoon](public/poster-image.jpg)
 
 > Image: Monarch Butterfly hatched from a cocoon.
 
-A lightweight browser native way to change color themes. `ThemeIT!` follows the [Modern Web](https://modern-web.dev/guides/going-buildless/css/) implementation for css theming and leverages the awesome power of `CSS` variables and `HTML` link element + with `Javascript` to allow theme customization inside of your web app, react app or website.
+A lightweight browser native way to switch color themes. `ThemeIT!` follows the [Modern Web](https://modern-web.dev/guides/going-buildless/css/) implementation for css theming and leverages the awesome power of `CSS` variables and `HTML` link element + with `Javascript` to allow theme customization inside of your web app, react app or website.
 
 ## Package information
 
