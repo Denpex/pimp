@@ -63,7 +63,6 @@ function changeTheme<T extends Theme>(theme: CustomTheme<T>) {
  */
 function init(defaultTheme: Theme = undefined, autoLoad: boolean = true) {
   stylesheetLinkList = getStylesheetLinks();
-  console.log("activeTheme", activeTheme);
 
   // Set the current theme
   if (typeof defaultTheme === "string") {
@@ -91,16 +90,17 @@ function init(defaultTheme: Theme = undefined, autoLoad: boolean = true) {
  * @param theme Name of the theme
  */
 function useTheme<T extends Theme>(theme: CustomTheme<T>) {
-  // Change the theme to dark or light when switching back to auto theme.
-  if (theme === "auto" && activeTheme !== "auto") {
-    let preferredTheme = getPreferredColorScheme();
-    changeTheme(preferredTheme);
-  } else {
-    changeTheme(theme);
-  }
-
   // Store theme
   activeTheme = theme;
+  let newTheme = theme;
+
+  // Load proper theme if auto
+  if (newTheme === "auto") {
+    newTheme = getPreferredColorScheme() as CustomTheme<T>;
+  }
+
+  // Change theme
+  changeTheme(newTheme);
 }
 
 /**

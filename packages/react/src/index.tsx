@@ -28,7 +28,7 @@ type Props<T extends Theme> = PropsWithChildren<{
    */
   defaultTheme?: CustomTheme<T>;
   /**
-   * Automatically load default theme.
+   * Automatically load default theme. (Default: true)
    */
   autoLoad?: boolean;
 }>;
@@ -46,10 +46,10 @@ const Context = createContext<ThemeContext<Theme>>(defaultState);
  */
 const ThemeProvider = <T extends Theme = undefined>({
   children,
-  defaultTheme,
-  autoLoad,
+  defaultTheme = "auto" as CustomTheme<T>,
+  autoLoad = true,
 }: Props<T>) => {
-  const [theme, setTheme] = useState(defaultTheme || "auto");
+  const [theme, setTheme] = useState(defaultTheme);
   const [themeList, setListThemes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -65,7 +65,10 @@ const ThemeProvider = <T extends Theme = undefined>({
   };
 
   // Combine
-  const state: ThemeContextState<T> = { theme: theme as CustomTheme<T>, themeList };
+  const state: ThemeContextState<T> = {
+    theme: theme as CustomTheme<T>,
+    themeList,
+  };
   const dispatch: ThemeContextDispatch = { changeTheme: onChangeTheme };
   const values: ThemeContext<T> = [state, dispatch];
 
