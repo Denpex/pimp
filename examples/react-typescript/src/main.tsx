@@ -20,7 +20,7 @@ import { ThemeProvider } from "@themeit/react";
 type CustomThemes = "spider-man" | "batman" | "dark" | "light" | "auto";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <ThemeProvider<CustomThemes>>
+  <ThemeProvider<CustomThemes> autoLoad defaultTheme="auto">
     <React.StrictMode>
       <App />
     </React.StrictMode>
