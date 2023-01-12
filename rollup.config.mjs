@@ -25,7 +25,7 @@ const packageJson = JSON.parse(
 
 // - Output
 console.log([
-  `Generating project: ${packageJson.name}`,
+  ["Generating project:", packageJson.name],
   "With following paths:",
   ["Workspace:", WORKSPACE_ROOT],
   ["Package:", PACKAGE_ROOT],

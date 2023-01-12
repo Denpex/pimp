@@ -25,9 +25,3 @@
   font-weight: bold;
   text-transform: capitalize;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}

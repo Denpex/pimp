@@ -3,7 +3,7 @@ import { getTheme, useTheme, init, getThemeList } from "@themeit/native";
 
 // - Types
 type CustomTheme = "spider-man" | "batman";
-type AllThemes = CustomTheme | DefaultTheme; // spider-man | batman | light | dark | "no-preference"
+type AllThemes = CustomTheme | DefaultTheme; // spider-man | batman | light | dark | "auto"
 
 // - Const
 const H2_ID = "selected-theme-title";

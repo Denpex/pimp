@@ -24,13 +24,13 @@ import { createContext, useState, useContext, useEffect } from "react";
 // - Type
 type Props<T extends Theme> = PropsWithChildren<{
   /**
-   * The default theme that should be used by ThemeIT!. (Default: no-preference)
+   * The default theme that should be used by ThemeIT!. (Default: auto)
    */
-  defaultTheme: CustomTheme<T>;
+  defaultTheme?: CustomTheme<T>;
   /**
    * Automatically load default theme.
    */
-  autoLoad: boolean;
+  autoLoad?: boolean;
 }>;
 
 // - Context
@@ -49,7 +49,7 @@ const ThemeProvider = <T extends Theme = undefined>({
   defaultTheme,
   autoLoad,
 }: Props<T>) => {
-  const [theme, setTheme] = useState(defaultTheme);
+  const [theme, setTheme] = useState(defaultTheme || "auto");
   const [themeList, setListThemes] = useState<string[]>([]);
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const ThemeProvider = <T extends Theme = undefined>({
   };
 
   // Combine
-  const state: ThemeContextState<T> = { theme, themeList };
+  const state: ThemeContextState<T> = { theme: theme as CustomTheme<T>, themeList };
   const dispatch: ThemeContextDispatch = { changeTheme: onChangeTheme };
   const values: ThemeContext<T> = [state, dispatch];
 

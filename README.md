@@ -59,7 +59,7 @@ yarn add @themeit/react # If you support React
 
 1. Add all CSS theme files inside of your HTML file.
 2. Set the `media(prefers-color-scheme: <name>)` attribute for each theme
-3. For the main theme please set the following `(prefers-color-scheme: no-preference)` or `(prefers-color-scheme: light)` as the `media` attribute.
+3. For the main theme please set the following `(prefers-color-scheme: light)` as the `media` attribute.
 
 > Important when setting the `(prefers-color-scheme: <name>)` the `<name>` will be used by `ThemeIT!` internally and externally. This key/name will be used by you when you want to change the theme using `ThemeIT!`. Please name them accordingly.
 
@@ -70,7 +70,7 @@ yarn add @themeit/react # If you support React
 Import `ThemeIT!` and call `init` method in root file before using any other methods. (Do this after [Setup instructions](#setup-instructions)).
 
 1. Argument #1 `defaultTheme` what theme should be set
-   as the initial theme. (Default: no-preference)
+   as the initial theme. (Default: no-auto)
 2. Argument #2 `autoLoad` whatever you should load the `defaultTheme` during initialization.
 
 ```Javascript
@@ -158,7 +158,7 @@ around. (Do this after [Setup instructions](#setup-instructions)).
 
 **`ThemeProvider` Props:**
 
-1. `defaultTheme` – what theme should be set as the initial theme. (Default: no-preference)
+1. `defaultTheme` – what theme should be set as the initial theme. (Default: auto)
 2. `autoLoad` – whatever you should load the `defaultTheme` during initialization.
 
 ```Javascript

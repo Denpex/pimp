@@ -20,7 +20,6 @@ import {
   getPreferredColorScheme,
   getStylesheetLinks,
   addColorSchemeChangeListener,
-  removeColorSchemeChangeListener,
 } from "./internal/util";
 
 // - Constants
@@ -36,9 +35,20 @@ let activeTheme: Theme;
  * Color scheme change listener.
  */
 const colorSchemeChangeListener: ThemeListener = ({ matches: isDark }) => {
-  console.log("colorSchemeChangeListener", "isDark:", isDark);
-  useTheme(isDark ? "dark" : "light");
+  if (activeTheme !== "auto") return;
+  changeTheme(isDark ? "dark" : "light");
 };
+
+function changeTheme<T extends Theme>(theme: CustomTheme<T>) {
+  const linkKeys = getThemeList();
+  for (const key of linkKeys) {
+    const wasChosen = key === theme;
+    const item = stylesheetLinkList.get(key);
+    if (!item) return;
+    item.media = wasChosen ? "all" : "not all";
+    item.disabled = !wasChosen;
+  }
+}
 
 // - API
 /**
@@ -49,9 +59,9 @@ const colorSchemeChangeListener: ThemeListener = ({ matches: isDark }) => {
  * Please make sure that you call this method before using `ThemeIT!`.
  *
  * @param defaultTheme {@link Theme} Set the default theme that will be used. Default `auto`
- * @param autoLoad Auto load the `defaultTheme`.
+ * @param autoLoad Auto load the `defaultTheme`. Default `true`
  */
-function init(defaultTheme: Theme = undefined, autoLoad: boolean = false) {
+function init(defaultTheme: Theme = undefined, autoLoad: boolean = true) {
   stylesheetLinkList = getStylesheetLinks();
   console.log("activeTheme", activeTheme);
 
@@ -62,11 +72,11 @@ function init(defaultTheme: Theme = undefined, autoLoad: boolean = false) {
     activeTheme = DEFAULT_THEME;
   }
 
-  // TODO: Handle autoLoad false but activeTheme == auto
-  // TODO: Update docs `no-preference` replace with `auto`
-
   // Load theme if necessary
   autoLoad && useTheme(activeTheme);
+
+  // Add listener
+  addColorSchemeChangeListener(colorSchemeChangeListener);
 }
 
 /**
@@ -81,24 +91,16 @@ function init(defaultTheme: Theme = undefined, autoLoad: boolean = false) {
  * @param theme Name of the theme
  */
 function useTheme<T extends Theme>(theme: CustomTheme<T>) {
-  const linkKeys = getThemeList();
-
-  // update theme css media queries
-  for (const key of linkKeys) {
-    const wasChosen = key === theme;
-    const item = stylesheetLinkList.get(key);
-    if (!item) return;
-    item.media = wasChosen ? "all" : "not all";
-    item.disabled = !wasChosen;
-    activeTheme = theme;
-  }
-
-  // add listener if auto
-  if (theme === "auto") {
-    addColorSchemeChangeListener(colorSchemeChangeListener);
+  // Change the theme to dark or light when switching back to auto theme.
+  if (theme === "auto" && activeTheme !== "auto") {
+    let preferredTheme = getPreferredColorScheme();
+    changeTheme(preferredTheme);
   } else {
-    removeColorSchemeChangeListener(colorSchemeChangeListener);
+    changeTheme(theme);
   }
+
+  // Store theme
+  activeTheme = theme;
 }
 
 /**
@@ -130,7 +132,9 @@ function getTheme<T extends Theme>(): CustomTheme<T> {
  * @returns Set of strings (themes)
  */
 function getThemeList(): Array<string> {
-  return Array.from(stylesheetLinkList.keys()) as string[];
+  let stylesheetList = Array.from(stylesheetLinkList.keys()) as string[];
+  stylesheetList.push("auto");
+  return stylesheetList;
 }
 
 // - Exports
