@@ -1,7 +1,7 @@
 {
   "name": "@themeit/native",
-  "version": "1.0.1",
-  "description": "A lightweight browser native way to change color themes.",
+  "version": "1.1.0",
+  "description": "A lightweight browser native theme switcher.",
   "license": "MIT",
   "entry": "src/index.ts",
   "main": "dist/lib/index.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Denpex/themeit.git"
+    "url": "https://github.com/rashadajtou/themeit.git"
   },
   "keywords": [
     "css",

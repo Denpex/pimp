@@ -2,9 +2,9 @@
  * File: /src/main.js
  * Project: @example/javascript
  * Created: Sunday, 13th November 2022
- * Author: Denpex
+ * Author: rashadajtou
  * -----
- * Copyright 2022, ©Denpex
+ * Copyright 2022, ©rashadajtou
  * -----
  */
 

@@ -2,9 +2,9 @@
  * File: /vite.config.ts
  * Project: @example/typescript
  * Created: Thursday, 10th November 2022
- * Author: Denpex
+ * Author: rashadajtou
  * -----
- * Copyright 2022, ©Denpex
+ * Copyright 2022, ©rashadajtou
  * -----
  */
 

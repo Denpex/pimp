@@ -2,9 +2,9 @@
  * File: /src/components/App.tsx
  * Project: @example/react-ts
  * Created: Sunday, 13th November 2022
- * Author: Denpex
+ * Author: rashadajtou
  * -----
- * Copyright 2022, ©Denpex
+ * Copyright 2022, ©rashadajtou
  * -----
  */
 

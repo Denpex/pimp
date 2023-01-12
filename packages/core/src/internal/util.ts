@@ -2,9 +2,9 @@
  * File: /src/internal/util.ts
  * Project: @themeit/native
  * Created: Wednesday, 12th October 2022
- * Author: Denpex
+ * Author: rashadajtou
  * -----
- * Copyright 2022, ©Denpex
+ * Copyright 2022, ©rashadajtou
  * -----
  */
 
