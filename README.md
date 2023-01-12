@@ -12,20 +12,20 @@ A lightweight browser native way to switch color themes. `ThemeIT!` follows the 
 
 | Detail             | Value                                      |
 | ------------------ | ------------------------------------------ |
-| Version            | `1.0.0`                                    |
-| Size               | `4.0 kB`                                   |
-| Size (gzip)        | `1.7 kB`                                   |
-| SHASUM             | `6bac78a300b1166db102c68f125b225a80136289` |
+| Version            | `1.1.1`                                    |
+| Size               | `5.0 kB`                                   |
+| Size (gzip)        | `2.0 kB`                                   |
+| SHASUM             | `7aa83b7f67a48d3612dd535c1ec073a3c940223f` |
 | Dependency (count) | `0`                                        |
 
 **`@themeit/react`**
 
 | Detail             | Value                                      |
 | ------------------ | ------------------------------------------ |
-| Version            | `1.0.0`                                    |
-| Size               | `3.3 kB`                                   |
-| Size (gzip)        | `1.5 kB`                                   |
-| SHASUM             | `2853d85b0b5b360ba0dd932445321db62c68b320` |
+| Version            | `1.1.1`                                    |
+| Size               | `3.7 kB`                                   |
+| Size (gzip)        | `1.7 kB`                                   |
+| SHASUM             | `acc3e0e127a8437e13878960917a939482b67e46` |
 | Dependency (count) | `2`                                        |
 
 ## Install
@@ -70,7 +70,7 @@ yarn add @themeit/react # If you support React
 Import `ThemeIT!` and call `init` method in root file before using any other methods. (Do this after [Setup instructions](#setup-instructions)).
 
 1. Argument #1 `defaultTheme` what theme should be set
-   as the initial theme. (Default: no-auto)
+   as the initial theme. (Default: auto)
 2. Argument #2 `autoLoad` whatever you should load the `defaultTheme` during initialization.
 
 ```Javascript
@@ -80,12 +80,19 @@ init("my-theme", true)
 ```
 
 ```Typescript
+import type { DefaultTheme } from "@themeit/native";
 import { init } from "@themeit/native";
 
-type MyThemes = "light" | "dark" | "my-theme";
+// DefaultTheme = "auto" | "light" | "dark";
+type MyThemes = DefaultTheme | "my-theme";
 
 init<MyThemes>("my-theme", true)
 ```
+
+### System theme
+
+The default option of ThemeIT! is to use the system theme. This is the out-of-the-box behavior so no setup
+is needed. To toggle this feature programmatically you can use `useTheme("auto")`.
 
 ### Change theme
 
@@ -103,7 +110,7 @@ useTheme(newTheme);
 // Typescript
 import { useTheme } from "@themeit/native";
 
-type MyThemes = "light" | "dark" | "my-theme";
+type MyThemes = "auto" | "my-theme";
 
 const myNewTheme = "my-theme";
 
@@ -125,7 +132,7 @@ const theme = getTheme();
 // Typescript
 import { getTheme } from "@themeit/native";
 
-type MyTheme = "light" | "dark" | "my-theme";
+type MyTheme = "auto" | "dark" | "my-theme";
 
 const theme = getTheme<MyTheme>();
 ```

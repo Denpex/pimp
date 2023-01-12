@@ -1,6 +1,6 @@
 {
   "name": "@themeit/react",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A lightweight browser native theme switcher for react.",
   "license": "MIT",
   "entry": "src/index.tsx",
