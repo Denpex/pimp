@@ -9,7 +9,7 @@ type AllThemes = CustomTheme | DefaultTheme; // spider-man | batman | light | da
 const H2_ID = "selected-theme-title";
 const SELECT_NAME = "colorTheme";
 
-/* Call before rending content */
+/* Call before rendering content */
 init("spider-man", true);
 
 // - Render
